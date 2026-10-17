@@ -6,7 +6,6 @@ import java.util.Locale;
 import java.util.Set;
 import java.util.function.Predicate;
 
-/** Immutable repair switches. Built on the main thread and swapped in one write. */
 public final class RepairSettings {
     public static final int DEFAULT_CYCLE_SECONDS = 20;
     public static final int DEFAULT_PLAYERS_PER_TICK = 1;
@@ -58,12 +57,10 @@ public final class RepairSettings {
         return whitelist ? listed : !listed;
     }
 
-    /** An offline file with no world id is repaired on a blacklist and skipped on a whitelist. */
     public boolean repairsUnknownWorld() {
         return !whitelist;
     }
 
-    /** Armor slots are visited when the optimisation is off, or when some old item is wearable armor. */
     public boolean scansArmorSlots(boolean anyOldItemIsArmor) {
         return !skipArmorWithoutEquipable || anyOldItemIsArmor;
     }

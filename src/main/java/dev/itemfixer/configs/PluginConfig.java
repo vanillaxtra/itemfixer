@@ -23,7 +23,6 @@ public final class PluginConfig {
         return current;
     }
 
-    /** @return false when the file cannot be parsed; the previous snapshot stays in place */
     public boolean load() {
         File file = new File(plugin.getDataFolder(), "config.yml");
         if (!file.isFile()) {

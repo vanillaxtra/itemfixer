@@ -26,7 +26,6 @@ import org.bukkit.World;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-/** One paced pass over online players and offline player data files. */
 final class FixAll {
     private final ItemFixerPlugin plugin;
     private final ItemFixService fixer;
@@ -130,7 +129,6 @@ final class FixAll {
         sender = null;
     }
 
-    /** @return how many offline files were repaired, counting against the tick budget */
     int consume(int budget) {
         if (!running) {
             return 0;

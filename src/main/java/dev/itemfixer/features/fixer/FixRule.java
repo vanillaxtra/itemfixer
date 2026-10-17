@@ -17,12 +17,10 @@ public final class FixRule {
         return copy;
     }
 
-    /** Live template. Do not mutate. */
     public ItemStack oldTemplate() {
         return oldItem;
     }
 
-    /** Live template. Do not mutate. */
     public ItemStack newTemplate() {
         return newItem;
     }
