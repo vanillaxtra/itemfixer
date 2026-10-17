@@ -1,0 +1,41 @@
+# MiniMessage works in every line. Gray is the body, white is the emphasis.
+# Green is a success, red is a stop. The plugin does not recolor these.
+version: 2
+
+chat:
+  items-updated: "<gray>Some item in your inventory have been <white>updated</white>.</gray>"
+
+command:
+  players-only: "<red>Only player's can open this GUI."
+  no-permission: "<red>You don't have permission to do that."
+  reloaded: "<green>Reloaded."
+  reload-failed: "<red>Failed to reload."
+  usage: "<gray>Usage: <white>/itemfixer</white> [reload|fixall]</gray>"
+  fixall-started: "<gray>Fixing items<white>...</white></gray>"
+  fixall-done: "<green>Completed fixing all items."
+  fixall-busy: "<red>A task is already running."
+  fixall-empty: "<gray>There are no rules to apply yet."
+
+gui:
+  title:
+    list: "<white>Item Fixer"
+    editor: "<white>Edit Rule"
+  help-name: "<white>How Rules Work"
+  list-lore: "<gray>Click on a rule to edit it or click the <green>emerald</green> to add a new rule.</gray>"
+  click-edit: "<dark_gray>Click to change this rule"
+  editor-book: "<white>Rule Editor"
+  editor-lore-1: "<gray>Place the old item in the <white>left</white> slot & the new item in the <white>right</white> slot.</gray>"
+  editor-lore-2: "<gray>Click the <green>emerald</green> to save the rule.</gray>"
+  back: "<gray>Back to the list"
+  confirm-title: "<white>Delete this rule"
+  confirm: "<green>This will remove the rule"
+  cancel: "<red>Cancel"
+  saved: "<green>Rule saved"
+  deleted: "<red>Rule deleted"
+  need-both: "<red>Put an old item and a new item in first"
+  arrow: "<gray>Becomes <white>------></white></gray>"
+  save: "<green>Save Rule"
+  delete: "<red>Delete Rule"
+  add: "<green>Add a Rule"
+  previous: "<gray>Previous Page"
+  next: "<gray>Next Page"

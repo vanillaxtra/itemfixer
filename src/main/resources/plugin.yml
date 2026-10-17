@@ -1,0 +1,19 @@
+name: ItemFixer
+version: '${project.version}'
+main: dev.itemfixer.ItemFixerPlugin
+api-version: '${api.version}'
+description: Converts old items into new items.
+commands:
+  itemfixer:
+    description: open the item fixer menu
+    usage: /itemfixer [reload|fixall]
+permissions:
+  itemfixer.admin:
+    description: open the fixer menu and reload rules
+    default: op
+  itemfixer.notify:
+    description: hear when your items are updated
+    default: true
+  itemfixer.bypass:
+    description: keep old items instead of having them repaired
+    default: false

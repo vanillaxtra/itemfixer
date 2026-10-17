@@ -1,0 +1,22 @@
+# Players with any of these permissions keep their old items.
+bypass-permissions:
+  - itemfixer.bypass
+
+# blacklist skips the worlds below. whitelist repairs only those worlds.
+# Names ignore case. An empty blacklist repairs every world.
+worlds:
+  mode: blacklist
+  list: []
+
+scan:
+  ender-chest: false
+
+optimisations:
+  # Skip armor slots when none of the old items can be worn.
+  skip-armor-without-equipable: true
+
+# How often online players are checked again, in seconds.
+cycle-seconds: 20
+
+# How many players are repaired on each tick. 1 avoids spikes.
+players-per-tick: 1
