@@ -18,6 +18,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 public final class Messages {
     public static final String ITEMS_UPDATED = "chat.items-updated";
+    public static final String UPDATE_AVAILABLE = "chat.update-available";
     public static final String PLAYERS_ONLY = "command.players-only";
     public static final String NO_PERMISSION = "command.no-permission";
     public static final String RELOADED = "command.reloaded";

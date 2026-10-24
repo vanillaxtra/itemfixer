@@ -17,6 +17,7 @@ public final class RepairSettings {
     private final boolean skipArmorWithoutEquipable;
     private final int cycleSeconds;
     private final int playersPerTick;
+    private final boolean updateChecker;
 
     public RepairSettings(
             List<String> bypassPermissions,
@@ -25,7 +26,8 @@ public final class RepairSettings {
             boolean scanEnderChest,
             boolean skipArmorWithoutEquipable,
             int cycleSeconds,
-            int playersPerTick) {
+            int playersPerTick,
+            boolean updateChecker) {
         this.bypassPermissions = List.copyOf(bypassPermissions);
         this.whitelist = whitelist;
         Set<String> folded = new HashSet<>();
@@ -37,10 +39,11 @@ public final class RepairSettings {
         this.skipArmorWithoutEquipable = skipArmorWithoutEquipable;
         this.cycleSeconds = cycleSeconds < 1 ? DEFAULT_CYCLE_SECONDS : cycleSeconds;
         this.playersPerTick = playersPerTick < 1 ? DEFAULT_PLAYERS_PER_TICK : playersPerTick;
+        this.updateChecker = updateChecker;
     }
 
     public static RepairSettings defaults() {
-        return new RepairSettings(List.of("itemfixer.bypass"), false, Set.of(), false, true, DEFAULT_CYCLE_SECONDS, DEFAULT_PLAYERS_PER_TICK);
+        return new RepairSettings(List.of("itemfixer.bypass"), false, Set.of(), false, true, DEFAULT_CYCLE_SECONDS, DEFAULT_PLAYERS_PER_TICK, true);
     }
 
     public boolean bypasses(Predicate<String> hasPermission) {
@@ -77,32 +80,38 @@ public final class RepairSettings {
         return playersPerTick;
     }
 
+    public boolean updateChecker() {
+        return updateChecker;
+    }
+
     public static void main(String[] args) {
         RepairSettings open = RepairSettings.defaults();
         assert open.repairsWorld("lobby");
         assert open.repairsUnknownWorld();
-        assert !new RepairSettings(List.of(), true, Set.of("arena"), false, true, 20, 1).repairsUnknownWorld();
+        assert !new RepairSettings(List.of(), true, Set.of("arena"), false, true, 20, 1, false).repairsUnknownWorld();
         assert open.bypasses(permission -> permission.equals("itemfixer.bypass"));
         assert !open.bypasses(permission -> false);
         assert open.scansArmorSlots(true);
         assert !open.scansArmorSlots(false);
         assert !open.scanEnderChest();
+        assert open.updateChecker();
         assert open.cycleSeconds() == DEFAULT_CYCLE_SECONDS;
         assert open.playersPerTick() == DEFAULT_PLAYERS_PER_TICK;
 
-        RepairSettings forced = new RepairSettings(List.of(), false, Set.of(), false, false, 0, 0);
+        RepairSettings forced = new RepairSettings(List.of(), false, Set.of(), false, false, 0, 0, false);
         assert forced.scansArmorSlots(false);
         assert forced.cycleSeconds() == DEFAULT_CYCLE_SECONDS;
         assert forced.playersPerTick() == DEFAULT_PLAYERS_PER_TICK;
         assert !forced.bypasses(permission -> true);
+        assert !forced.updateChecker();
 
-        RepairSettings blacklist = new RepairSettings(List.of(), false, Set.of("lobby"), false, true, 20, 1);
+        RepairSettings blacklist = new RepairSettings(List.of(), false, Set.of("lobby"), false, true, 20, 1, true);
         assert !blacklist.repairsWorld("Lobby");
         assert blacklist.repairsWorld("world");
 
-        RepairSettings whitelist = new RepairSettings(List.of(), true, Set.of("arena"), false, true, 20, 1);
+        RepairSettings whitelist = new RepairSettings(List.of(), true, Set.of("arena"), false, true, 20, 1, true);
         assert whitelist.repairsWorld("Arena");
         assert !whitelist.repairsWorld("lobby");
-        assert !new RepairSettings(List.of(), true, Set.of(), false, true, 20, 1).repairsWorld("world");
+        assert !new RepairSettings(List.of(), true, Set.of(), false, true, 20, 1, true).repairsWorld("world");
     }
 }

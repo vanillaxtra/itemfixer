@@ -16,6 +16,7 @@ public final class PlayerJoinListener implements Listener {
     public void onJoin(PlayerJoinEvent event) {
         plugin.fixer().noteOnline(event.getPlayer().getUniqueId());
         plugin.fixer().givePending(event.getPlayer());
+        plugin.updates().notifyOnJoin(event.getPlayer());
         if (!plugin.fixer().hasRules()) {
             return;
         }

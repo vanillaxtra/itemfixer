@@ -6,6 +6,8 @@ import dev.itemfixer.configs.RepairSettings;
 import dev.itemfixer.features.fixer.FixRuleRepository;
 import dev.itemfixer.features.fixer.ItemFixService;
 import dev.itemfixer.features.gui.FixerHolder;
+import dev.itemfixer.hooks.BStatsHook;
+import dev.itemfixer.hooks.ModrinthUpdateChecker;
 import dev.itemfixer.listeners.FixerGuiClickListener;
 import dev.itemfixer.listeners.FixerGuiCloseListener;
 import dev.itemfixer.listeners.FixerGuiDragListener;
@@ -25,6 +27,7 @@ public final class ItemFixerPlugin extends JavaPlugin {
     private final PluginConfig config = new PluginConfig(this);
     private FixRuleRepository rules;
     private ItemFixService fixer;
+    private ModrinthUpdateChecker updates;
     private BukkitTask sweepTask;
     private int sweepSeconds = -1;
 
@@ -35,6 +38,9 @@ public final class ItemFixerPlugin extends JavaPlugin {
         config.load();
         rules = new FixRuleRepository(this);
         fixer = new ItemFixService(this, rules);
+        BStatsHook.start(this);
+        updates = new ModrinthUpdateChecker(this);
+        updates.checkOnce();
         var pluginManager = Bukkit.getPluginManager();
         pluginManager.registerEvents(new PlayerJoinListener(this), this);
         pluginManager.registerEvents(new PlayerQuitListener(this), this);
@@ -109,5 +115,9 @@ public final class ItemFixerPlugin extends JavaPlugin {
 
     public ItemFixService fixer() {
         return fixer;
+    }
+
+    public ModrinthUpdateChecker updates() {
+        return updates;
     }
 }

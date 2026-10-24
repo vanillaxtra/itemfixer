@@ -50,7 +50,8 @@ public final class PluginConfig {
         boolean skipArmor = bool(yaml, "optimisations.skip-armor-without-equipable", true, logger);
         int cycleSeconds = positive(yaml, "cycle-seconds", RepairSettings.DEFAULT_CYCLE_SECONDS, logger);
         int playersPerTick = positive(yaml, "players-per-tick", RepairSettings.DEFAULT_PLAYERS_PER_TICK, logger);
-        return new RepairSettings(bypass, whitelist, worlds, enderChest, skipArmor, cycleSeconds, playersPerTick);
+        boolean updateChecker = bool(yaml, "update-checker", true, logger);
+        return new RepairSettings(bypass, whitelist, worlds, enderChest, skipArmor, cycleSeconds, playersPerTick, updateChecker);
     }
 
     private static boolean whitelist(YamlConfiguration yaml, Logger logger) {

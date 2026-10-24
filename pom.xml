@@ -6,7 +6,7 @@
 
   <groupId>dev.itemfixer</groupId>
   <artifactId>itemfixer</artifactId>
-  <version>1.0.0</version>
+  <version>1.1.0</version>
   <packaging>jar</packaging>
 
   <name>ItemFixer</name>
@@ -31,6 +31,18 @@
       <groupId>io.papermc.paper</groupId>
       <artifactId>paper-api</artifactId>
       <version>${paper.api.version}</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.bstats</groupId>
+      <artifactId>bstats-bukkit</artifactId>
+      <version>3.2.1</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.google.code.gson</groupId>
+      <artifactId>gson</artifactId>
+      <version>2.11.0</version>
       <scope>provided</scope>
     </dependency>
   </dependencies>
@@ -112,6 +124,22 @@
                 <argument>-cp</argument>
                 <argument>${project.build.outputDirectory}</argument>
                 <argument>dev.itemfixer.features.fixer.NamedBinaryTag</argument>
+              </arguments>
+            </configuration>
+          </execution>
+          <execution>
+            <id>modrinth-update-self-check</id>
+            <phase>test</phase>
+            <goals>
+              <goal>exec</goal>
+            </goals>
+            <configuration>
+              <executable>java</executable>
+              <arguments>
+                <argument>-ea</argument>
+                <argument>-cp</argument>
+                <argument>${project.build.outputDirectory}</argument>
+                <argument>dev.itemfixer.hooks.VersionCompare</argument>
               </arguments>
             </configuration>
           </execution>

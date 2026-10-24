@@ -20,3 +20,6 @@ cycle-seconds: 20
 
 # How many players are repaired on each tick. 1 avoids spikes.
 players-per-tick: 1
+
+# Ask Modrinth at startup if a newer release exists. Off also hides the admin notice.
+update-checker: true

@@ -1,6 +1,6 @@
 # ItemFixer
 
-[![Version](https://img.shields.io/badge/version-1.0.0-blue.svg)](https://papermc.io/)
+[![Version](https://img.shields.io/badge/version-1.1.0-blue.svg)](https://modrinth.com/plugin/itemfixer)
 [![Platform](https://img.shields.io/badge/Paper-1.21--26.3-purple.svg)](https://papermc.io/)
 [![Java](https://img.shields.io/badge/Java-21%2B-orange.svg)](https://adoptium.net/)
 
@@ -138,6 +138,7 @@ Main config: `plugins/ItemFixer/config.yml`
 | `optimisations.skip-armor-without-equipable` | `true` | Skip armor slots when no old item is wearable armor |
 | `cycle-seconds` | `20` | Seconds between full online checks |
 | `players-per-tick` | `1` | Players repaired on each tick |
+| `update-checker` | `true` | Ask Modrinth at startup if a newer release exists |
 
 Rules are stored in `plugins/ItemFixer/rules.yml`. Overflow from offline repairs is stored in `plugins/ItemFixer/pending.yml`.
 

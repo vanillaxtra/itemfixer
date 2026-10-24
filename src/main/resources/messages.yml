@@ -1,9 +1,10 @@
 # MiniMessage works in every line. Gray is the body, white is the emphasis.
 # Green is a success, red is a stop. The plugin does not recolor these.
-version: 2
+version: 3
 
 chat:
   items-updated: "<gray>Some item in your inventory have been <white>updated</white>.</gray>"
+  update-available: "<gray>An ItemFixer update is on Modrinth. <click:open_url:'https://modrinth.com/plugin/itemfixer'><green>Click here</green></click> <gray>to get it.</gray>"
 
 command:
   players-only: "<red>Only player's can open this GUI."

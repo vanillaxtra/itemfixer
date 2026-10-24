@@ -3,6 +3,8 @@ version: '${project.version}'
 main: dev.itemfixer.ItemFixerPlugin
 api-version: '${api.version}'
 description: Converts old items into new items.
+libraries:
+  - org.bstats:bstats-bukkit:3.2.1
 commands:
   itemfixer:
     description: open the item fixer menu
