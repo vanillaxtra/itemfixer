@@ -1,6 +1,6 @@
 # ItemFixer
 
-[![Version](https://img.shields.io/badge/version-1.1.0-blue.svg)](https://modrinth.com/plugin/itemfixer)
+[![Version](https://img.shields.io/badge/version-1.2.0-blue.svg)](https://modrinth.com/plugin/itemfixer)
 [![Platform](https://img.shields.io/badge/Paper-1.21--26.3-purple.svg)](https://papermc.io/)
 [![Java](https://img.shields.io/badge/Java-21%2B-orange.svg)](https://adoptium.net/)
 
