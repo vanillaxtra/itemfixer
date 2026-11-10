@@ -17,7 +17,7 @@ Replaces old items with the new ones in case updates are needed. Built for FFA w
 
 * **Pair old and new** - Each fix is one old item and the item it becomes.
 * **Keeps the stack** - A stack of 12 stays a stack of 12. Only the item changes.
-* **Exact match** - Name, enchants, and item data stay so it purely becomes the item you want it to.
+* **Exact match** - Name, enchants, and item data have to match. Current durability does not, so a worn item and a fresh one hit the same rule. The item they receive uses the durability you saved on the new item.
 * **Chat notice** - Players with `itemfixer.notify` get notified when something of theirs changed.
 
 ---

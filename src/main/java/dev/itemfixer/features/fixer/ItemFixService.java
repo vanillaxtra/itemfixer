@@ -14,6 +14,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.Damageable;
 
 public final class ItemFixService {
     private final ItemFixerPlugin plugin;
@@ -214,14 +215,14 @@ public final class ItemFixService {
         if (candidates.length == 0) {
             return Replacement.keep(stack);
         }
-        int match = RuleIndex.firstMatch(candidates, index -> snap.rules().get(index).oldTemplate().isSimilar(stack));
+        int match = RuleIndex.firstMatch(candidates, index -> sameIgnoringDurability(snap.rules().get(index).oldTemplate(), stack));
         if (match < 0) {
             return Replacement.keep(stack);
         }
         ItemStack template = snap.rules().get(match).newTemplate();
         int keep = RuleIndex.clampedAmount(stack.getAmount(), template.getMaxStackSize());
         int extra = RuleIndex.leftover(stack.getAmount(), template.getMaxStackSize());
-        if (extra == 0 && keep == stack.getAmount() && stack.isSimilar(template)) {
+        if (extra == 0 && keep == stack.getAmount() && sameIgnoringDurability(stack, template)) {
             return Replacement.keep(stack);
         }
         ItemStack placed = null;
@@ -247,6 +248,25 @@ public final class ItemFixService {
             left -= amount;
         }
         return stacks;
+    }
+
+    // current damage is wear, not identity
+    // max durability stays part of the item
+    static boolean sameIgnoringDurability(ItemStack left, ItemStack right) {
+        if (left.isSimilar(right)) {
+            return true;
+        }
+        return undamaged(left).isSimilar(undamaged(right));
+    }
+
+    private static ItemStack undamaged(ItemStack stack) {
+        ItemStack copy = stack.clone();
+        if (!(copy.getItemMeta() instanceof Damageable meta) || !meta.hasDamageValue()) {
+            return copy;
+        }
+        meta.resetDamage();
+        copy.setItemMeta(meta);
+        return copy;
     }
 
     static final class Replacement {
